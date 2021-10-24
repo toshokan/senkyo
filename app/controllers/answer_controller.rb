@@ -48,6 +48,10 @@ class AnswerController < ApplicationController
       render plain: "already answered"
       return
     end
+    if !Person.where(question: @q, user: user).first
+      render plain: "no"
+      return
+    end
     tkt = SecureRandom.uuid
     Answer.transaction do
       Answer.new(question: q, entry: entry, ticket: tkt).save
