@@ -1,23 +1,15 @@
 class TellerController < ApplicationController
   include LoginHelper
+  include TellerHelper
   before_action :require_login
+  before_action :require_teller
   
   def get
     @q = helpers.extract_question
-    user = helpers.current_user
-    if !Teller.where(question: @q, user: user).first
-      render plain: "not allowed"
-      return
-    end
   end
 
   def all
     q = helpers.extract_question
-    user = helpers.current_user
-    if !Teller.where(question: q, user: user).first
-      render plain: "not allowed"
-      return
-    end
     ts = Teller.where(question: q)
       .map { |t| t.user }
       .join("\n")
@@ -26,12 +18,7 @@ class TellerController < ApplicationController
 
   def put
     q = helpers.extract_question
-    user = helpers.current_user
     new_tellers = params[:tellers].lines
-    if !Teller.where(question: q, user: user).first
-      render plain: "not allowed"
-      return
-    end
     Teller.transaction do
       Teller.where(question: q).destroy_all
       new_tellers.each do |t|
