@@ -4,12 +4,8 @@ class AnswerController < ApplicationController
   
   def get
     @q = helpers.extract_question
-    if !@q
-      render plain: "not found"
-      return
-    end
-    if !Person.where(question: @q, user: helpers.current_user).first
-      render plain: "no"
+    if !can_answer?
+      render plain: "you cannot answer this question"
       return
     end
   end
@@ -47,12 +43,8 @@ class AnswerController < ApplicationController
       return
     end
     user = helpers.current_user
-    if PersonAnswer.where(qid: q.qid, user: user).first
-      render plain: "already answered"
-      return
-    end
-    if !Person.where(question: q, user: user).first
-      render plain: "no"
+    if !can_answer?
+      render plain: "you cannot answer this question"
       return
     end
     tkt = SecureRandom.uuid
@@ -62,5 +54,14 @@ class AnswerController < ApplicationController
     end
 
     render plain: tkt
+  end
+
+  private
+  def can_answer?
+    user = helpers.current_user
+    q = helpers.extract_question
+    allowed = Person.where(question: q, user: user).size
+    answers = PersonAnswer.where(qid: q.qid, user: user).size
+    allowed > answers
   end
 end

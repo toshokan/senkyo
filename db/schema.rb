@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2021_10_24_021442) do
   create_table "person_answers", force: :cascade do |t|
     t.string "qid"
     t.string "user"
-    t.index ["qid", "user"], name: "index_person_answers_on_qid_and_user", unique: true
   end
 
   create_table "questions", force: :cascade do |t|
