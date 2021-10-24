@@ -1,4 +1,7 @@
 class AnswerController < ApplicationController
+  include LoginHelper
+  before_action :require_login
+  
   def get
     @q = question
     if !@q

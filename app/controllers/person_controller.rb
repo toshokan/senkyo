@@ -1,4 +1,7 @@
 class PersonController < ApplicationController
+  include LoginHelper
+  before_action :require_login
+  
   def get
     @q = question
     user = helpers.current_user

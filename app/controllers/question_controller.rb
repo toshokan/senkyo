@@ -1,4 +1,7 @@
 class QuestionController < ApplicationController
+  include LoginHelper
+  before_action :require_login
+  
   def get
   end
   

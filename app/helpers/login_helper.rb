@@ -7,6 +7,12 @@ module LoginHelper
     current_user != nil
   end
 
+  def require_login
+    if !is_logged_in
+      redirect_to login_path
+    end
+  end
+
   def current_user
     cookies.signed[:user_id]
   end
