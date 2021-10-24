@@ -3,7 +3,7 @@ class PersonController < ApplicationController
   before_action :require_login
   
   def get
-    @q = question
+    @q = helpers.extract_question
     user = helpers.current_user
     if !Teller.where(question: @q, user: user).first
       render plain: "not allowed"
@@ -12,7 +12,7 @@ class PersonController < ApplicationController
   end
 
   def all
-    q = question
+    q = helpers.extract_question
     user = helpers.current_user
     if !Teller.where(question: q, user: user).first
       render plain: "not allowed"
@@ -25,7 +25,7 @@ class PersonController < ApplicationController
   end
 
   def put
-    q = question
+    q = helpers.extract_question
     user = helpers.current_user
     new_people = params[:people].lines
     if !Teller.where(question: q, user: user).first
@@ -39,11 +39,5 @@ class PersonController < ApplicationController
       end
     end
     render plain: "ok"
-  end
-
-  private
-  def question
-    qid = params[:qid]
-    Question.where(qid: qid).first
   end
 end

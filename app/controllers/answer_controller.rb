@@ -3,7 +3,7 @@ class AnswerController < ApplicationController
   before_action :require_login
   
   def get
-    @q = question
+    @q = helpers.extract_question
     if !@q
       render plain: "not found"
       return
@@ -15,7 +15,7 @@ class AnswerController < ApplicationController
   end
 
   def all
-    q = question
+    q = helpers.extract_question
     if q
       t = Teller.where(question: q, user: helpers.current_user)
     end
@@ -28,7 +28,7 @@ class AnswerController < ApplicationController
 
   def view
     tkt = params[:tkt]
-    q = question
+    q = helpers.extract_question
     if q
       a = Answer.where(question: q, ticket: tkt).first
     end
@@ -41,7 +41,7 @@ class AnswerController < ApplicationController
 
   def create
     entry = params[:answer]
-    q = question
+    q = helpers.extract_question
     if !q
       render plain: "not found"
       return
@@ -62,12 +62,5 @@ class AnswerController < ApplicationController
     end
 
     render plain: tkt
-  end
-
-  private
-
-  def question
-    qid = params[:qid]
-    q = Question.where(qid: qid).first
   end
 end
