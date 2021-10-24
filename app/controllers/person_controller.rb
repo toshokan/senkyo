@@ -12,6 +12,7 @@ class PersonController < ApplicationController
   def all
     q = helpers.extract_question
     ts = Person.where(question: q)
+      .order(user: :asc)
       .map { |t| t.user }
       .join("\n")
     render plain: ts

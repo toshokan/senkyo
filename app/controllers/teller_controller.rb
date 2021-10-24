@@ -11,6 +11,7 @@ class TellerController < ApplicationController
   def all
     q = helpers.extract_question
     ts = Teller.where(question: q)
+      .order(user: :asc)
       .map { |t| t.user }
       .join("\n")
     render plain: ts
