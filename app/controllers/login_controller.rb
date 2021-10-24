@@ -26,6 +26,6 @@ class LoginController < ApplicationController
 
   def logout
     helpers.log_out
-    render plain: "ok"
+    redirect_to login_path
   end
 end
