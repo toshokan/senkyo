@@ -51,7 +51,7 @@ class AnswerController < ApplicationController
       render plain: "already answered"
       return
     end
-    if !Person.where(question: @q, user: user).first
+    if !Person.where(question: q, user: user).first
       render plain: "no"
       return
     end
