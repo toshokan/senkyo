@@ -53,7 +53,7 @@ class AnswerController < ApplicationController
       PersonAnswer.new(qid: q.qid, user: user).save
     end
 
-    render plain: tkt
+    render plain: "Your ticket number for this question is #{tkt}"
   end
 
   private
