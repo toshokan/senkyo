@@ -2,7 +2,7 @@ class PersonController < ApplicationController
   include LoginHelper
   include TellerHelper
   before_action :require_login
-  before_action :require_teller
+  before_action :require_teller, except: [:all]
   
   def get
     @q = helpers.extract_question
