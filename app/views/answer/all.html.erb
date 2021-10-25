@@ -1,4 +1,5 @@
-<% @as.each do |a| %>
-  <%= simple_format a.entry %>
-  <hr>
-<% end %>
+<div class="bg-white divide-y-2 w-full h-full">
+  <% @as.each do |a| %>
+    <%= simple_format a.entry, class: "mx-4" %>
+  <% end %>
+</div>

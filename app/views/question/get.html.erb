@@ -1,4 +1,7 @@
-<%= form_with do |f| %>
-  <%= f.text_field :description %>
-  <%= f.submit "ask" %>
-<% end %>
+<div class="card">
+  <span class="heading text-center">Ask a question</span>
+  <%= form_with class: "contents" do |f| %>
+    <%= f.text_field :description, class: "text-box" %>
+    <%= f.submit "Ask", class: "btn" %>
+  <% end %>
+</div>
