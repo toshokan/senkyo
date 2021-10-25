@@ -4,7 +4,7 @@
 Dockerfile
 vendor
 .bundle
-db
+db/*.sqlite3
 log
 tmp
 public/assets
