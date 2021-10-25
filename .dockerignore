@@ -1,0 +1,13 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+vendor
+.bundle
+db
+log
+tmp
+public/assets
+public/packs
+node_modules
+.byebug_history
