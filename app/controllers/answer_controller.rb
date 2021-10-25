@@ -13,7 +13,7 @@ class AnswerController < ApplicationController
   def all
     q = helpers.extract_question
     if q
-      t = Teller.where(question: q, user: helpers.current_user)
+      t = Teller.where(question: q, user: helpers.current_user).first
     end
     if !t
       render plain: "no"
@@ -48,12 +48,13 @@ class AnswerController < ApplicationController
       return
     end
     tkt = SecureRandom.uuid
-    Answer.transaction do
-      Answer.new(question: q, entry: entry, ticket: tkt).save
-      PersonAnswer.new(qid: q.qid, user: user).save
+    Rails.logger.silence do
+      Answer.transaction do
+        Answer.new(question: q, entry: entry, ticket: tkt).save
+        PersonAnswer.new(qid: q.qid, user: user).save
+      end
+      render plain: "Your ticket number for this question is #{tkt}"
     end
-
-    render plain: "Your ticket number for this question is #{tkt}"
   end
 
   private
