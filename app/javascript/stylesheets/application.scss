@@ -11,7 +11,7 @@
 }
 
 .text-box {
-    @apply rounded-sm h-8 border-2 border-purple-100 text-gray-800
+    @apply rounded-sm h-8 border-2 border-indigo-100 text-gray-800
 }
 
 .text-area {
@@ -19,5 +19,5 @@
 }
 
 .btn {
-    @apply rounded-sm h-8 bg-gray-100 hover:bg-purple-300 text-gray-800 mt-4
+    @apply rounded-sm h-8 bg-gray-100 hover:bg-indigo-300 text-gray-800 mt-4
 }
