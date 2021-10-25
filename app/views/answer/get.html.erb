@@ -1,5 +1,8 @@
-<%= @q.description %>
-<%= form_with do |f| %>
-  <%= f.text_area :answer %>
-  <%= f.submit "answer" %>
-<% end %>
+<div class="card">
+  <span class="heading"><%= @q.description %></span>
+  <%= form_with class: "contents" do |f| %>
+    <%= f.label "Answer" %>
+    <%= f.text_area :answer, class: "text-box text-area" %>
+    <%= f.submit "Answer", class: "btn" %>
+  <% end %>
+</div>

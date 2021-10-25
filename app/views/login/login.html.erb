@@ -1,7 +1,11 @@
-Please sign in
+<div class="card">
+  <span class="heading text-center">Please sign in</span>
+  <%= form_with class: "contents" do |f| %>
+    <%= f.label "Short username or email" %>
+    <%= f.text_field :user , class: "text-box"%>
+    <%= f.label "Password" %>
+    <%= f.password_field :password, class: "text-box" %>
+    <%= f.submit "Sign in", class: "btn" %>
+  <% end %>
+</div>
 
-<%= form_with do |f| %>
-  <%= f.text_field :user %>
-  <%= f.password_field :password %>
-  <%= f.submit "Sign in" %>
-<% end %>

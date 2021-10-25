@@ -1,4 +1,7 @@
-<%= form_with method: "put" do |f| %>
-  <%= f.text_area :tellers %>
-  <%= f.submit "set tellers" %>
-<% end %>
+<div class="card">
+  <span class="heading text-center">Set the list of tellers</span>
+  <%= form_with class: "contents", method: "put" do |f| %>
+    <%= f.text_area :tellers, class: "text-box text-area" %>
+    <%= f.submit "Set", class: "btn" %>
+  <% end %>
+</div>

@@ -2,6 +2,22 @@
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
 
+.heading {
+    @apply text-xl font-medium
+}
+
+.card {
+    @apply rounded-md bg-white flex flex-col max-w-2xl w-9/12 md:w-1/2 my-16 p-4
+}
+
+.text-box {
+    @apply rounded-sm h-8 border-2 border-purple-100 text-gray-800
+}
+
+.text-area {
+    @apply h-40
+}
+
 .btn {
-    @apply rounded bg-purple-300
+    @apply rounded-sm h-8 bg-gray-100 hover:bg-purple-300 text-gray-800 mt-4
 }
